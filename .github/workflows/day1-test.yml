@@ -1,0 +1,10 @@
+name: Day 1 - First Pipeline
+
+on: push
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello
+        run: echo "✅ Congrats! Pehli GitHub Action pipeline chal gayi"
