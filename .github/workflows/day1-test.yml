@@ -15,5 +15,5 @@ jobs:
           ls -la
       - name: Validate index.html exists
         run: |
-              test -f index123.html
+              test -f index.html
               echo "✅ index.html file exists"
