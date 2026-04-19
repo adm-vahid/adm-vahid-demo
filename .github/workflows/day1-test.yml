@@ -13,3 +13,7 @@ jobs:
         run: |
           pwd
           ls -la
+      - name: Validate index.html exists
+        run: |
+              test -f index.html
+              echo "✅ index.html file exists"
