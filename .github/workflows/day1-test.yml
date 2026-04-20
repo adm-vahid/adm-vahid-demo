@@ -51,23 +51,19 @@ jobs:
         run: docker run -d -p 8080:80 --name web my-nginx-demo
 
 
+      
       - name: Test container with curl (wait for nginx)
-      run: |
+        run: |
          echo "Waiting for container to be ready..."
          for i in {1..5}; do
          if curl -s http://localhost:8080; then
-        echo "✅ Container is up"
-          exit 0
+         echo "✅ Container is up"
+         exit 0
          fi
-        sleep 2
-        done
-        echo "❌ Container not reachable"
-       exit 1
-
-
-      - name: Cleanup container
-        if: always()
-        run: docker rm -f web
+         sleep 2
+         done
+         echo "❌ Container not reachable"
+         exit 1
 
 
 
