@@ -35,9 +35,11 @@ jobs:
 
       - name: Use secret (will be masked)
         run: echo "Secret value = $DEMO_SECRET"
-     docker:
-     runs-on: ubuntu-latest
-     steps:
+        env:
+         DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+  docker:
+      runs-on: ubuntu-latest
+      steps:
       - name: Checkout code
         uses: actions/checkout@v5
 
@@ -54,6 +56,5 @@ jobs:
         if: always()
         run: docker rm -f web
 
-        env:
-          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+
 
