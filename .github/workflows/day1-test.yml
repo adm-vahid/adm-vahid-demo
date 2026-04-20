@@ -38,6 +38,7 @@ jobs:
         env:
          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
   docker:
+      needs: build
       runs-on: ubuntu-latest
       steps:
       - name: Checkout code
