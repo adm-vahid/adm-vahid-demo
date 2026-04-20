@@ -35,6 +35,25 @@ jobs:
 
       - name: Use secret (will be masked)
         run: echo "Secret value = $DEMO_SECRET"
+     docker:
+     runs-on: ubuntu-latest
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Build Docker image
+        run: docker build -t my-nginx-demo .
+
+      - name: Run Docker container
+        run: docker run -d -p 8080:80 --name web my-nginx-demo
+
+      - name: Test container with curl
+        run: curl http://localhost:8080
+
+      - name: Cleanup container
+        if: always()
+        run: docker rm -f web
+
         env:
           DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
 
