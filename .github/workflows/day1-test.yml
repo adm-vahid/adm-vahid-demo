@@ -14,6 +14,7 @@ jobs:
           echo "🔨 Build started"
           ls -la
           echo "✅ Build completed"
+          
 
   test:
     runs-on: ubuntu-latest
@@ -26,3 +27,14 @@ jobs:
         run: |
           test -f index.html
           echo "✅ Test passed: index.html exists"
+          
+      - name: Print normal variable
+        run: echo "Normal var = $MY_VAR"
+        env:
+          MY_VAR: "I am normal text"
+
+      - name: Use secret (will be masked)
+        run: echo "Secret value = $DEMO_SECRET"
+        env:
+          DEMO_SECRET: ${{ secrets.DEMO_SECRET }}
+
